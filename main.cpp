@@ -18,16 +18,14 @@ int main() {
 	//This code is in a bit of a sorry state, fix it.
 	std::string name;
 	std::cin >> name;
-	auto& age = studentAges.at(name); //oops, this will throw an exception if the name isn't found;
-	std::cout << name << " is " << age << " years old\n";
-
+	int age{};
 	//this try catch block has the necessary syntax you need to fulfil the task.
-	try {
-		//do stuff here.
+	try
+    {
+        age = studentAges.at(name);
 	} catch (const std::out_of_range& e) {
-		//We only go inside here if the exception was thrown.
-		//if you're curious, e.what() returns a string that you can read.
+		std::cerr << e.what() << '\n';
 	}
-	
+    std::cout << name << " is " << age << " years old\n";
 	return 0;
 }
